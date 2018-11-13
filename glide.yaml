@@ -8,6 +8,6 @@ import:
   version: v1.0
 - package: github.com/henosteven/heigo
   subpackages:
-  - heiThrift
+  - heithrift
   - httpservice
-- package: heiThrift
+- package: heithrift

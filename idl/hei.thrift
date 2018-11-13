@@ -1,4 +1,4 @@
-namespace go heithrift
+namespace go heiThrift
 
 struct Data {
     1: string text

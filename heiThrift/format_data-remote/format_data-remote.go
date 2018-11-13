@@ -13,7 +13,7 @@ import (
         "strconv"
         "strings"
         "git.apache.org/thrift.git/lib/go/thrift"
-        "heithrift"
+        "heiThrift"
 )
 
 
@@ -109,7 +109,7 @@ func main() {
     Usage()
     os.Exit(1)
   }
-  client := heithrift.NewFormatDataClientFactory(trans, protocolFactory)
+  client := heiThrift.NewFormatDataClientFactory(trans, protocolFactory)
   if err := trans.Open(); err != nil {
     fmt.Fprintln(os.Stderr, "Error opening socket to ", host, ":", port, " ", err)
     os.Exit(1)
@@ -131,7 +131,7 @@ func main() {
     }
     factory7 := thrift.NewTSimpleJSONProtocolFactory()
     jsProt8 := factory7.GetProtocol(mbTrans5)
-    argvalue0 := heithrift.NewData()
+    argvalue0 := heiThrift.NewData()
     err9 := argvalue0.Read(jsProt8)
     if err9 != nil {
       Usage()

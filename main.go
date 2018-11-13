@@ -3,6 +3,8 @@ package main
 import (
 	"github.com/codegangsta/martini"
 	"github.com/henosteven/heigo/httpservice"
+	_ "github.com/henosteven/heigo/heiThrift"
+	_ "git.apache.org/thrift.git/lib/go/thrift"
 	"fmt"
 	"runtime"
 	"os"

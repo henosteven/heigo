@@ -1,0 +1,4 @@
+package: .
+import:
+- package: github.com/codegangsta/martini
+  version: v1.0

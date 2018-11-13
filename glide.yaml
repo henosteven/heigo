@@ -1,4 +1,13 @@
-package: .
+package: jinjing.space/web
 import:
+- package: git.apache.org/thrift.git
+  version: 0.11.0
+  subpackages:
+  - lib/go/thrift
 - package: github.com/codegangsta/martini
   version: v1.0
+- package: github.com/henosteven/heigo
+  subpackages:
+  - heiThrift
+  - httpservice
+- package: heiThrift

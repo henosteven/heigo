@@ -3,22 +3,30 @@ package main
 import (
 	"github.com/codegangsta/martini"
 	"github.com/henosteven/heigo/httpservice"
-	_ "github.com/henosteven/heigo/heiThrift"
-	_ "git.apache.org/thrift.git/lib/go/thrift"
+	"git.apache.org/thrift.git/lib/go/thrift"
+	"github.com/henosteven/heigo/heithrift"
 	"fmt"
 	"runtime"
 	"os"
 	"os/signal"
 	"syscall"
 	"time"
+	"log"
 )
 
 var quit = make(chan int)
+
+type FormatDataImpl struct{}
+
+func (fdi FormatDataImpl) DoFormat (data *heithrift.Data) (r *heithrift.Data, err error) {
+	return data, nil
+}
 
 func main() {
 	runtime.GOMAXPROCS(runtime.NumCPU())
 	go signalProcess()
 	go initMartini()
+	go initThriftServe()
 	<- quit
 	fmt.Println("ctrl -c ~ bye~bye~")
 	time.Sleep(time.Second * 2)
@@ -40,4 +48,19 @@ func initMartini() {
 	m.Get("/get", httpservice.Get)
 	m.Get("/set", httpservice.Set)
 	m.Run()
+}
+
+func initThriftServe() {
+	handler := &FormatDataImpl{}
+	processor := heithrift.NewFormatDataProcessor(handler)
+	serverTransport, err := thrift.NewTServerSocket("127.0.0.1:3001")
+	if err != nil {
+		log.Fatalln("Error:", err)
+	}
+	transportFactory := thrift.NewTFramedTransportFactory(thrift.NewTTransportFactory())
+	protocolFactory := thrift.NewTBinaryProtocolFactoryDefault()
+
+	server := thrift.NewTSimpleServer4(processor, serverTransport, transportFactory, protocolFactory)
+	fmt.Println("Running at:", "127.0.0.1:3001")
+	server.Serve()
 }

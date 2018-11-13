@@ -1,12 +1,12 @@
 hash: 07281e60f69c71f0884a84b9ceaced84ad7fceecb76a5d2a85571a7424577476
-updated: 2018-11-13T17:20:12.800959+08:00
+updated: 2018-11-13T17:36:15.482035+08:00
 imports:
 - name: github.com/codegangsta/inject
   version: 33e0aa1cb7c019ccc3fbe049a8262a6403d30504
 - name: github.com/codegangsta/martini
   version: 49411a5b646861ad29a6ddd5351717a0a9c49b94
 - name: github.com/henosteven/heigo
-  version: 28cb851dd9d34728b1e48e2afaf2933ca6bc7e9d
+  version: 411ab9f6e38a7eb97d39919df2464ade2de317d8
   subpackages:
   - httpservice
 testImports: []

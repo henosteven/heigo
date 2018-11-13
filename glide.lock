@@ -1,0 +1,21 @@
+hash: 136ea15cad77686751ff5ed7d571360f1782cbdf6bbf7385412bde2835d9d445
+updated: 2018-11-13T20:09:17.355953+08:00
+imports:
+- name: git.apache.org/thrift.git
+  version: 327ebb6c2b6df8bf075da02ef45a2a034e9b79ba
+  subpackages:
+  - lib/go/thrift
+- name: github.com/codegangsta/inject
+  version: 33e0aa1cb7c019ccc3fbe049a8262a6403d30504
+- name: github.com/codegangsta/martini
+  version: 49411a5b646861ad29a6ddd5351717a0a9c49b94
+- name: github.com/henosteven/heigo
+  version: 6b80294e70770a6b0c1580a5f0b2ab510ebe3ea9
+  subpackages:
+  - heiThrift
+  - httpservice
+- name: golang.org/x/net
+  version: 04a2e542c03f1d053ab3e4d6e5abcd4b66e2be8e
+  subpackages:
+  - context
+testImports: []

@@ -1,10 +1,10 @@
 package main
 
 import (
+	"git.apache.org/thrift.git/lib/go/thrift"
 	"github.com/codegangsta/martini"
 	"github.com/henosteven/heigo/httpservice"
-	"git.apache.org/thrift.git/lib/go/thrift"
-	"github.com/henosteven/heigo/heithrift"
+	"github.com/henosteven/heigo/heiThrift"
 	"fmt"
 	"runtime"
 	"os"
@@ -12,13 +12,14 @@ import (
 	"syscall"
 	"time"
 	"log"
+	"context"
 )
 
 var quit = make(chan int)
 
 type FormatDataImpl struct{}
 
-func (fdi FormatDataImpl) DoFormat (data *heithrift.Data) (r *heithrift.Data, err error) {
+func (fdi FormatDataImpl) DoFormat (data *heiThrift.Data) (r *heiThrift.Data, err error) {
 	return data, nil
 }
 
@@ -52,7 +53,7 @@ func initMartini() {
 
 func initThriftServe() {
 	handler := &FormatDataImpl{}
-	processor := heithrift.NewFormatDataProcessor(handler)
+	processor := heiThrift.NewFormatDataProcessor(handler)
 	serverTransport, err := thrift.NewTServerSocket("127.0.0.1:3001")
 	if err != nil {
 		log.Fatalln("Error:", err)

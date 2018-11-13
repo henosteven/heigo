@@ -1,13 +1,12 @@
 package: jinjing.space/web
 import:
 - package: git.apache.org/thrift.git
-  version: 0.11.0
+  version: 0.9.2
   subpackages:
   - lib/go/thrift
 - package: github.com/codegangsta/martini
   version: v1.0
 - package: github.com/henosteven/heigo
   subpackages:
-  - heithrift
+  - heiThrift
   - httpservice
-- package: heithrift

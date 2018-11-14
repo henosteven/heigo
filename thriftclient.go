@@ -10,7 +10,7 @@ import (
 )
 
 func main()  {
-	tSocket, err := thrift.NewTSocket(net.JoinHostPort(config.HOST, config.PORT))
+	tSocket, err := thrift.NewTSocket(net.JoinHostPort(config.HOST, config.THRIFT_PORT))
 	if err != nil {
 		log.Fatalln("tSocket error:", err)
 	}
@@ -21,7 +21,7 @@ func main()  {
 	client := heiThrift.NewFormatDataClientFactory(transport, protocolFactory)
 
 	if err := transport.Open(); err != nil {
-		log.Fatalln("Error opening:", net.JoinHostPort(config.HOST, config.PORT))
+		log.Fatalln("Error opening:", net.JoinHostPort(config.HOST, config.THRIFT_PORT))
 	}
 	defer transport.Close()
 

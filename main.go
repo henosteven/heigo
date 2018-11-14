@@ -55,7 +55,7 @@ func initMartini() {
 func initThriftServe() {
 	handler := &FormatDataImpl{}
 	processor := heiThrift.NewFormatDataProcessor(handler)
-	serverTransport, err := thrift.NewTServerSocket(net.JoinHostPort(config.HOST, config.PORT))
+	serverTransport, err := thrift.NewTServerSocket(net.JoinHostPort(config.HOST, config.THRIFT_PORT))
 	if err != nil {
 		log.Fatalln("Error:", err)
 	}
@@ -63,6 +63,6 @@ func initThriftServe() {
 	protocolFactory := thrift.NewTBinaryProtocolFactoryDefault()
 
 	server := thrift.NewTSimpleServer4(processor, serverTransport, transportFactory, protocolFactory)
-	fmt.Println("Running at:", net.JoinHostPort(config.HOST, config.PORT))
+	fmt.Println("Running at:", net.JoinHostPort(config.HOST, config.THRIFT_PORT))
 	server.Serve()
 }

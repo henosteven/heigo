@@ -1,8 +1,8 @@
-hash: 136ea15cad77686751ff5ed7d571360f1782cbdf6bbf7385412bde2835d9d445
-updated: 2018-11-13T20:09:17.355953+08:00
+hash: ace51418ca5aed33fb8b0d0270c63d96ff6636a449243c316bcf58a531c26e01
+updated: 2018-11-14T10:51:38.611875+08:00
 imports:
 - name: git.apache.org/thrift.git
-  version: 327ebb6c2b6df8bf075da02ef45a2a034e9b79ba
+  version: 53dd39833a08ce33582e5ff31fa18bb4735d6731
   subpackages:
   - lib/go/thrift
 - name: github.com/codegangsta/inject
@@ -14,8 +14,4 @@ imports:
   subpackages:
   - heiThrift
   - httpservice
-- name: golang.org/x/net
-  version: 04a2e542c03f1d053ab3e4d6e5abcd4b66e2be8e
-  subpackages:
-  - context
 testImports: []

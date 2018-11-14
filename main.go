@@ -12,7 +12,6 @@ import (
 	"syscall"
 	"time"
 	"log"
-	"context"
 )
 
 var quit = make(chan int)

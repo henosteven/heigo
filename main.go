@@ -5,6 +5,7 @@ import (
 	"github.com/codegangsta/martini"
 	"github.com/henosteven/heigo/httpservice"
 	"github.com/henosteven/heigo/heiThrift"
+	"github.com/henosteven/heigo/config"
 	"fmt"
 	"runtime"
 	"os"
@@ -12,6 +13,7 @@ import (
 	"syscall"
 	"time"
 	"log"
+	"net"
 )
 
 var quit = make(chan int)
@@ -53,7 +55,7 @@ func initMartini() {
 func initThriftServe() {
 	handler := &FormatDataImpl{}
 	processor := heiThrift.NewFormatDataProcessor(handler)
-	serverTransport, err := thrift.NewTServerSocket("127.0.0.1:3001")
+	serverTransport, err := thrift.NewTServerSocket(net.JoinHostPort(config.HOST, config.PORT))
 	if err != nil {
 		log.Fatalln("Error:", err)
 	}
@@ -61,6 +63,6 @@ func initThriftServe() {
 	protocolFactory := thrift.NewTBinaryProtocolFactoryDefault()
 
 	server := thrift.NewTSimpleServer4(processor, serverTransport, transportFactory, protocolFactory)
-	fmt.Println("Running at:", "127.0.0.1:3001")
+	fmt.Println("Running at:", net.JoinHostPort(config.HOST, config.PORT))
 	server.Serve()
 }

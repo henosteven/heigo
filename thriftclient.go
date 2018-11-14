@@ -3,18 +3,14 @@ package main
 import (
 	"git.apache.org/thrift.git/lib/go/thrift"
 	"github.com/henosteven/heigo/heiThrift"
+	"github.com/henosteven/heigo/config"
 	"net"
 	"fmt"
 	"log"
 )
 
-const (
-	HOST = "localhost"
-	PORT = "3001"
-)
-
 func main()  {
-	tSocket, err := thrift.NewTSocket(net.JoinHostPort(HOST, PORT))
+	tSocket, err := thrift.NewTSocket(net.JoinHostPort(config.HOST, config.PORT))
 	if err != nil {
 		log.Fatalln("tSocket error:", err)
 	}
@@ -25,7 +21,7 @@ func main()  {
 	client := heiThrift.NewFormatDataClientFactory(transport, protocolFactory)
 
 	if err := transport.Open(); err != nil {
-		log.Fatalln("Error opening:", HOST + ":" + PORT)
+		log.Fatalln("Error opening:", net.JoinHostPort(config.HOST, config.PORT))
 	}
 	defer transport.Close()
 

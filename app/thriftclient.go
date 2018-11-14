@@ -7,6 +7,7 @@ import (
 	"net"
 	"fmt"
 	"log"
+	"context"
 )
 
 func main()  {
@@ -15,7 +16,7 @@ func main()  {
 		log.Fatalln("tSocket error:", err)
 	}
 	transportFactory := thrift.NewTFramedTransportFactory(thrift.NewTTransportFactory())
-	transport := transportFactory.GetTransport(tSocket)
+	transport, _ := transportFactory.GetTransport(tSocket)
 	protocolFactory := thrift.NewTBinaryProtocolFactoryDefault()
 
 	client := heiThrift.NewFormatDataClientFactory(transport, protocolFactory)
@@ -26,7 +27,8 @@ func main()  {
 	defer transport.Close()
 
 
+	ctx := context.Background()
 	data := heiThrift.Data{Text:"hello,world!"}
-	d, err := client.DoFormat(&data)
+	d, err := client.DoFormat(ctx, &data)
 	fmt.Println(d.Text)
 }

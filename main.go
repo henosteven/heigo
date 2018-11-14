@@ -14,13 +14,14 @@ import (
 	"time"
 	"log"
 	"net"
+	"context"
 )
 
 var quit = make(chan int)
 
 type FormatDataImpl struct{}
 
-func (fdi FormatDataImpl) DoFormat (data *heiThrift.Data) (r *heiThrift.Data, err error) {
+func (fdi FormatDataImpl) DoFormat (ctx context.Context, data *heiThrift.Data) (r *heiThrift.Data, err error) {
 	return data, nil
 }
 

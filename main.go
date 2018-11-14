@@ -50,6 +50,7 @@ func initMartini() {
 	m.Get("/", httpservice.Hello)
 	m.Get("/get", httpservice.Get)
 	m.Get("/set", httpservice.Set)
+	os.Setenv("PORT", config.WEB_PORT)
 	m.Run()
 }
 

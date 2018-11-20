@@ -34,6 +34,6 @@ func Set(key, val string) error {
 }
 
 func Get(key string) (string, error) {
-	val, err := pool.Get().Do("Get", key)
-	return val.(string), err
+	val, err := redis.String(pool.Get().Do("Get", key))
+	return val, err
 }

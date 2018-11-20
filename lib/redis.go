@@ -15,7 +15,7 @@ func InitRedis (config config.RedisConfig) {
 		MaxIdle:config.MaxIdle,
 		IdleTimeout:config.IdleTimeout,
 		Dial: func() (redis.Conn, error){
-			c , err := redis.DialURL(net.JoinHostPort(config.Host, config.Password))
+			c , err := redis.DialURL(net.JoinHostPort(config.Host, config.Port))
 			return c, err
 		},
 		TestOnBorrow: func(c redis.Conn, t time.Time) error {
@@ -26,4 +26,14 @@ func InitRedis (config config.RedisConfig) {
 			return err
 		},
 	}
+}
+
+func Set(key, val string) error {
+	_, err := pool.Get().Do("Set", key, val)
+	return err
+}
+
+func Get(key string) (string, error) {
+	val, err := pool.Get().Do("Get", key)
+	return val.(string), err
 }

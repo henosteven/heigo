@@ -39,7 +39,7 @@ func TestGet(t *testing.T) {
 		expect string
 	} {
 		{"name", "test"},
-		{"name", "jinjing"},
+		{"name1", ""},
 	}
 
 	for _, demoItem := range demo {

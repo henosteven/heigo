@@ -1,0 +1,11 @@
+[webconf]
+port = "3002"
+
+[thriftconf]
+port = "3000"
+
+[redisconf]
+maxidle = 3
+idle_timeout = 300
+host = "127.0.0.1"
+port = "6379"

@@ -1,5 +1,5 @@
 hash: eb7e0d3e6ff26c90915cf1fe8a9158ae497175d165ecdddde24f5b1b27f6a2d2
-updated: 2018-11-20T11:09:15.328603+08:00
+updated: 2018-11-20T14:28:24.183971+08:00
 imports:
 - name: git.apache.org/thrift.git
   version: 327ebb6c2b6df8bf075da02ef45a2a034e9b79ba
@@ -15,7 +15,7 @@ imports:
   - internal
   - redis
 - name: github.com/henosteven/heigo
-  version: a1092ce962da87dc43dfe0f92d947674ef494b00
+  version: eddb864d962c96d2732b4f1cc49112c4ea013453
   subpackages:
   - config
   - heiThrift

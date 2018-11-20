@@ -15,7 +15,7 @@ func InitRedis (config config.RedisConfig) {
 		MaxIdle:config.MaxIdle,
 		IdleTimeout:config.IdleTimeout,
 		Dial: func() (redis.Conn, error){
-			c , err := redis.DialURL(net.JoinHostPort(config.Host, config.Port))
+			c , err := redis.Dial("tcp", net.JoinHostPort(config.Host, config.Port))
 			return c, err
 		},
 		TestOnBorrow: func(c redis.Conn, t time.Time) error {

@@ -39,6 +39,7 @@ func request(ctx context.Context, path string, params map[string]interface{}, he
 		panic("failed to request source")
 	}
 
+	defer resp.Body.Close()
 	respData, err := ioutil.ReadAll(resp.Body)
 
 	return string(respData), nil

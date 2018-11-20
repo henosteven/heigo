@@ -27,6 +27,9 @@ func (fdi FormatDataImpl) DoFormat (ctx context.Context, data *heiThrift.Data) (
 
 func main() {
 	runtime.GOMAXPROCS(runtime.NumCPU())
+
+	config.InitConfig()
+
 	go signalProcess()
 	go initMartini()
 	go initThriftServe()
@@ -50,15 +53,14 @@ func initMartini() {
 	m.Get("/", httpservice.Hello)
 	m.Get("/get", httpservice.Get)
 	m.Get("/set", httpservice.Set)
-	os.Setenv("PORT", config.WEB_PORT)
-	fmt.Println("port:", os.Getenv("PORT"))
+	os.Setenv("PORT", config.GlobalConfig.WebConf.Port)
 	m.Run()
 }
 
 func initThriftServe() {
 	handler := &FormatDataImpl{}
 	processor := heiThrift.NewFormatDataProcessor(handler)
-	serverTransport, err := thrift.NewTServerSocket(net.JoinHostPort(config.HOST, config.THRIFT_PORT))
+	serverTransport, err := thrift.NewTServerSocket(net.JoinHostPort(config.GlobalConfig.Host, config.GlobalConfig.ThriftConf.Port))
 	if err != nil {
 		log.Fatalln("Error:", err)
 	}
@@ -66,6 +68,6 @@ func initThriftServe() {
 	protocolFactory := thrift.NewTBinaryProtocolFactoryDefault()
 
 	server := thrift.NewTSimpleServer4(processor, serverTransport, transportFactory, protocolFactory)
-	fmt.Println("Running at:", net.JoinHostPort(config.HOST, config.THRIFT_PORT))
+	fmt.Println("Running at:", net.JoinHostPort(config.GlobalConfig.Host, config.GlobalConfig.ThriftConf.Port))
 	server.Serve()
 }

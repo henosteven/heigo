@@ -8,9 +8,6 @@ import (
 )
 
 const HOST = "127.0.0.1"
-const WEB_PORT = "3002"
-const THRIFT_PORT = "3001"
-
 
 type RedisConfig struct {
 	MaxIdle int	`json:"maxidle",toml:"maxidle"`
@@ -30,6 +27,7 @@ type ThriftConfig struct {
 }
 
 type Config struct {
+	Host string `json:"host",toml:"host"`
 	WebConf WebConfig	`json:"web_conf",toml:"webconf"`
 	ThriftConf ThriftConfig	`json:"thrift_conf",toml:"thriftconf`
 	RedisConf  RedisConfig	`json:"redis_conf",toml:"redisconf"`

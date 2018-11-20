@@ -35,8 +35,8 @@ type Config struct {
 
 var GlobalConfig Config
 
-func InitConfig() {
-	if _, err := toml.DecodeFile("./conf.toml", &GlobalConfig); err != nil {
+func InitConfig(path string) {
+	if _, err := toml.DecodeFile(path, &GlobalConfig); err != nil {
 		panic(err)
 	}
 }

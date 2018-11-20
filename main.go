@@ -28,7 +28,8 @@ func (fdi FormatDataImpl) DoFormat (ctx context.Context, data *heiThrift.Data) (
 func main() {
 	runtime.GOMAXPROCS(runtime.NumCPU())
 
-	config.InitConfig()
+	configPath := "./config/conf.toml"
+	config.InitConfig(configPath)
 
 	go signalProcess()
 	go initMartini()

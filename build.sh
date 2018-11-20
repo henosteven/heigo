@@ -1,3 +1,3 @@
 glide cache-clear
-glide install
+glide update
 go build -o mweb ./*.go

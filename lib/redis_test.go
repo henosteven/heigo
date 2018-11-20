@@ -4,6 +4,7 @@ import (
 	"time"
 	"testing"
 	"github.com/henosteven/heigo/config"
+	"os"
 )
 
 var conf = config.RedisConfig{
@@ -15,7 +16,8 @@ var conf = config.RedisConfig{
 
 func TestMain(m *testing.M) {
 	InitRedis(conf)
-	m.Run()
+	retCode := m.Run()
+	os.Exit(retCode)
 }
 
 func TestSet(t *testing.T) {
@@ -32,19 +34,23 @@ func TestSet(t *testing.T) {
 }
 
 func TestGet(t *testing.T) {
-	var demo = map[string]string {
-		"name": "test",
+	var demo = []struct {
+		key string
+		expect string
+	} {
+		{"name", "test"},
+		{"name", "jinjing"},
 	}
 
-	for key, val := range (demo) {
-		cacheval, err := Get(key)
+	for _, demoItem := range demo {
+		cacheVal, err := Get(demoItem.key)
 
 		if err != nil {
-			t.Error("case failed: get")
+			t.Errorf("case failed: get  key:%s, expect: %s, get:%s", demoItem.key, demoItem.expect, cacheVal)
 		}
 
-		if cacheval != val {
-			t.Error("case failed: get content failed")
+		if cacheVal != demoItem.expect {
+			t.Errorf("case failed: get  key:%s, expect: %s, get:%s", demoItem.key, demoItem.expect, cacheVal)
 		}
 	}
 }

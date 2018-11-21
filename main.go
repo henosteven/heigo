@@ -7,6 +7,7 @@ import (
 	"github.com/henosteven/heigo/heiThrift"
 	"github.com/henosteven/heigo/config"
 	"github.com/henosteven/heigo/thriftservice"
+	"github.com/henosteven/heigo/model"
 	"fmt"
 	"runtime"
 	"os"
@@ -25,10 +26,13 @@ func main() {
 	configPath := "./config/conf.toml"
 	config.InitConfig(configPath)
 
+	model.InitDb()
+
 	go signalProcess()
 	go initMartini()
 	go initThriftServe()
 	<- quit
+	model.TeardownDb()
 	fmt.Println("ctrl -c ~ bye~bye~")
 	time.Sleep(time.Second * 2)
 }

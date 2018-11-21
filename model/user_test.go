@@ -26,7 +26,7 @@ func TestAddUser(t *testing.T) {
 			t.Errorf("addUser failed, error: %s, name: %s", val.userName, err.Error())
 		}
 
-		if result != val.expectResult {
+		if result > 0 {
 			t.Errorf("addUser failed, name: %s, expect: %s  get: %s", val.userName, val.expectResult, result)
 		}
 	}

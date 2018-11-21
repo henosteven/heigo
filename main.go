@@ -34,7 +34,7 @@ func main() {
 	<- quit
 	model.TeardownDb()
 	fmt.Println("ctrl -c ~ bye~bye~")
-	time.Sleep(time.Second * 2)
+	time.Sleep(time.Second * 1)
 }
 
 func signalProcess() {

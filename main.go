@@ -54,7 +54,7 @@ func initMartini() {
 
 func initThriftServe() {
 	handler := &thriftservice.UserHandlerImpl{}
-	processor := heiThrift.NewFormatDataProcessor(handler)
+	processor := heiThrift.NewUserHandlerProcessor(handler)
 	serverTransport, err := thrift.NewTServerSocket(net.JoinHostPort(config.GlobalConfig.Host, config.GlobalConfig.ThriftConf.Port))
 	if err != nil {
 		log.Fatalln("Error:", err)

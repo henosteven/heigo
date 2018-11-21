@@ -1,7 +1,7 @@
 package httpservice
 
-var tmpvar string
+import "net/http"
 
-func SetUser() {
-	tmpvar = "yes~~just~for~test"
+func SetUser(w http.ResponseWriter, r *http.Request) {
+	w.Write([]byte("yes~~just~for~test"))
 }

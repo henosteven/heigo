@@ -50,8 +50,8 @@ func signalProcess() {
 func initMartini() {
 	m := martini.Classic()
 	m.Get("/", httpservice.Hello)
-	m.Get("/user", httpservice.GetUser)
-	m.Post("/user", httpservice.SetUser)
+	m.Get("/user", httpservice.SafeHandler(httpservice.GetUser))
+	m.Post("/user", httpservice.SafeHandler(httpservice.SetUser))
 	os.Setenv("PORT", config.GlobalConfig.WebConf.Port)
 	m.Run()
 }

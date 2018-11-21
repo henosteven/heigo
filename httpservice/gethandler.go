@@ -16,6 +16,7 @@ func GetUser(w http.ResponseWriter, r *http.Request) {
 
 	response:
 		w.Write([]byte(resp))
+		return
 
 	params := r.URL.Query()
 	userID := params.Get("userId")

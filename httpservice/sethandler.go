@@ -2,6 +2,6 @@ package httpservice
 
 var tmpvar string
 
-func Set() {
+func SetUser() {
 	tmpvar = "yes~~just~for~test"
 }

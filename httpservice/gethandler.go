@@ -1,5 +1,6 @@
 package httpservice
 
-func Get() string {
+func GetUser() string {
+	userID := 1
 	return tmpvar
 }

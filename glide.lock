@@ -1,5 +1,5 @@
 hash: eb7e0d3e6ff26c90915cf1fe8a9158ae497175d165ecdddde24f5b1b27f6a2d2
-updated: 2018-11-20T16:14:45.706617+08:00
+updated: 2018-11-21T10:44:06.741674+08:00
 imports:
 - name: git.apache.org/thrift.git
   version: 327ebb6c2b6df8bf075da02ef45a2a034e9b79ba
@@ -16,8 +16,10 @@ imports:
   subpackages:
   - internal
   - redis
+- name: github.com/go-sql-driver/mysql
+  version: 361f66ef3b53de1f16b7f2af9ef38a6c159ceb3e
 - name: github.com/henosteven/heigo
-  version: 92d76577610f9215edaa6d86053752c1aba1dc49
+  version: daa4e4bf09cbd439c316a0188b7bb28508b30c4e
   subpackages:
   - config
   - heiThrift
@@ -26,4 +28,8 @@ imports:
   version: 04a2e542c03f1d053ab3e4d6e5abcd4b66e2be8e
   subpackages:
   - context
+- name: google.golang.org/appengine
+  version: ae0ab99deb4dc413a2b4bd6c8bdd0eb67f1e4d06
+  subpackages:
+  - cloudsql
 testImports: []

@@ -4,7 +4,7 @@ import (
 	"errors"
 	"database/sql"
 	_ "github.com/go-sql-driver/mysql"
-	"jinjing.space/web/config"
+	"github.com/henosteven/heigo/config"
 	"fmt"
 )
 

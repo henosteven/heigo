@@ -1,6 +1,10 @@
 # heigo
 测试使用功能的小项目
 
+* 建立user表，操作项：增加+查询，建表语句在model中
+* 通过http协议对外提供服务 127.0.0.1:3002
+* 通过thrift协议对外提供服务 client代码在下方
+
 ## thrift文件生成
 thrift --out ../  --gen go hei.thrift
 

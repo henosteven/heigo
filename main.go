@@ -6,6 +6,7 @@ import (
 	"github.com/henosteven/heigo/httpservice"
 	"github.com/henosteven/heigo/heiThrift"
 	"github.com/henosteven/heigo/config"
+	"github.com/henosteven/heigo/thriftservice"
 	"fmt"
 	"runtime"
 	"os"
@@ -14,16 +15,9 @@ import (
 	"time"
 	"log"
 	"net"
-	"context"
 )
 
 var quit = make(chan int)
-
-type FormatDataImpl struct{}
-
-func (fdi FormatDataImpl) DoFormat (ctx context.Context, data *heiThrift.Data) (r *heiThrift.Data, err error) {
-	return data, nil
-}
 
 func main() {
 	runtime.GOMAXPROCS(runtime.NumCPU())
@@ -59,7 +53,7 @@ func initMartini() {
 }
 
 func initThriftServe() {
-	handler := &FormatDataImpl{}
+	handler := &thriftservice.FormatDataImpl{}
 	processor := heiThrift.NewFormatDataProcessor(handler)
 	serverTransport, err := thrift.NewTServerSocket(net.JoinHostPort(config.GlobalConfig.Host, config.GlobalConfig.ThriftConf.Port))
 	if err != nil {

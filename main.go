@@ -26,7 +26,7 @@ func main() {
 	configPath := "./config/conf.toml"
 	config.InitConfig(configPath)
 
-	model.InitDb(config.GlobalConfig.MysqlConfig)
+	model.InitDb(config.GlobalConfig.MysqlConf)
 
 	go signalProcess()
 	go initMartini()

@@ -53,7 +53,7 @@ func initMartini() {
 }
 
 func initThriftServe() {
-	handler := &thriftservice.FormatDataImpl{}
+	handler := &thriftservice.UserHandlerImpl{}
 	processor := heiThrift.NewFormatDataProcessor(handler)
 	serverTransport, err := thrift.NewTServerSocket(net.JoinHostPort(config.GlobalConfig.Host, config.GlobalConfig.ThriftConf.Port))
 	if err != nil {

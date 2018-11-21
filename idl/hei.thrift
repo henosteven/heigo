@@ -1,9 +1,11 @@
 namespace go heiThrift
 
-struct Data {
-    1: string text
+struct User {
+    1: i64  userId
+    2: string UserName
 }
 
-service format_data {
-    Data do_format(1: Data data),
+service UserHandler {
+    User getUser(1: i64 userId)
+    i64  addUser(1: string username)
 }

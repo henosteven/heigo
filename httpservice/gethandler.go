@@ -1,8 +1,8 @@
 package httpservice
 
 import (
+	"github.com/henosteven/heigo/model"
 	"net/http"
-	"jinjing.space/web/model"
 	"strconv"
 )
 

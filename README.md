@@ -5,7 +5,7 @@
 thrift --out ../  --gen go hei.thrift
 
 
-<<<
+```
 package main
 
 import (
@@ -45,4 +45,4 @@ func main()  {
 	userID, err := client.AddUser(ctx, "haoran")
 	fmt.Println(userID, err)
 }
-<<<
+```

@@ -28,32 +28,32 @@ func TeardownDb() {
 	db.Close()
 }
 
-func AddUser(userName string) (bool, error){
+func AddUser(userName string) (int, error){
 	if len(userName) == 0 {
-		return false, errors.New("user name empty")
+		return 0, errors.New("user name empty")
 	}
 
 	stmtOut, err := db.Prepare("INSERT INTO User VALUES (NULL, ?)") // ? = placeholder
 	if err != nil {
-		return false, err
+		return 0, err
 	}
 	defer stmtOut.Close()
 
 	result, err := stmtOut.Exec(userName)
 	if err != nil {
-		return false, err
+		return 0, err
 	}
 
-	affectedRow, err := result.RowsAffected()
+	userID, err := result.LastInsertId()
 	if err != nil {
-		return false, err
+		return 0, err
 	}
 
-	if affectedRow == 0 {
-		return false, err
+	if userID == 0 {
+		return 0, err
 	}
 
-	return true, nil
+	return int(userID), nil
 }
 
 func GetUserNameByID(userID int) (string, error){

@@ -21,7 +21,7 @@ var db *sql.DB
 func InitDb(config config.MysqlConfig) {
 	var err error
 	//root:@tcp(127.0.0.1:3306)/test
-	db, err = sql.Open("mysql", fmt.Sprintf("%s:@%s(%s:%s)/%s", config.User, config.Protocol, config.Host, config.Port, config.Port))
+	db, err = sql.Open("mysql", fmt.Sprintf("%s:@%s(%s:%s)/%s", config.User, config.Protocol, config.Host, config.Port, config.Database))
 	if err != nil {
 		panic(err.Error())
 	}

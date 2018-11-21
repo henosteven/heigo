@@ -4,6 +4,8 @@ import (
 	"errors"
 	"database/sql"
 	_ "github.com/go-sql-driver/mysql"
+	"jinjing.space/web/config"
+	"fmt"
 )
 
 /*
@@ -16,9 +18,10 @@ CREATE TABLE `user` (
 
 var db *sql.DB
 
-func InitDb() {
+func InitDb(config config.MysqlConfig) {
 	var err error
-	db, err = sql.Open("mysql", "root:@tcp(127.0.0.1:3306)/test")
+	//root:@tcp(127.0.0.1:3306)/test
+	db, err = sql.Open("mysql", fmt.Sprintf("%s:@%s(%s:%s)/%s", config.User, config.Protocol, config.Host, config.Port, config.Port))
 	if err != nil {
 		panic(err.Error())
 	}

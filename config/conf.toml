@@ -11,3 +11,11 @@ maxidle = 3
 idle_timeout = 300
 host = "127.0.0.1"
 port = "6379"
+
+[mysqlconf]
+host = "127.0.0.1"
+port = "3306"
+database = "test"
+user = "root"
+password = ""
+protocol = "tcp"

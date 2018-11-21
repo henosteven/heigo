@@ -26,11 +26,21 @@ type ThriftConfig struct {
 	Port string	`json:"port",toml:"port"`
 }
 
+type MysqlConfig struct {
+	Host string	`json:"host",toml:"host"`
+	Port string	`json:"port",toml:"port"`
+	User string	`json:"user",toml:"user"`
+	Password string	`json:"password",toml:"password"`
+	Database string	`json:"database",toml:"database"`
+	Protocol string	`json:"protocol",toml:"protocol"`
+}
+
 type Config struct {
 	Host string `json:"host",toml:"host"`
 	WebConf WebConfig	`json:"web_conf",toml:"webconf"`
 	ThriftConf ThriftConfig	`json:"thrift_conf",toml:"thriftconf`
 	RedisConf  RedisConfig	`json:"redis_conf",toml:"redisconf"`
+	MysqlConf  MysqlConfig	`json:"mysql_conf",toml:"mysqlconf"`
 }
 
 var GlobalConfig Config

@@ -14,21 +14,19 @@ const (
 func GetUser(w http.ResponseWriter, r *http.Request) {
 	var resp string
 
-	response:
-		w.Write([]byte(resp))
-		return
-
 	params := r.URL.Query()
 	userID := params.Get("userId")
 	if userID == "" {
 		resp = USERID_EMPTY
-		goto response
+		w.Write([]byte(resp))
+		return
 	}
 
 	id, err := strconv.Atoi(userID)
 	if err !=nil {
 		resp = USERID_NOT_DIGIT
-		goto response
+		w.Write([]byte(resp))
+		return
 	}
 
 	userName, err := model.GetUserNameByID(id)
@@ -37,5 +35,5 @@ func GetUser(w http.ResponseWriter, r *http.Request) {
 	}  else {
 		resp = userName
 	}
-	goto response
+	w.Write([]byte(resp))
 }

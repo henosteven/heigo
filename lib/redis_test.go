@@ -46,7 +46,7 @@ func TestGet(t *testing.T) {
 		cacheVal, err := Get(demoItem.key)
 
 		if err != nil {
-			t.Errorf("case failed: get  key:%s, expect: %s, get:%s", demoItem.key, demoItem.expect, cacheVal)
+			t.Errorf("case failed err: %v", err)
 		}
 
 		if cacheVal != demoItem.expect {

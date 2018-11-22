@@ -67,13 +67,13 @@ func GetUserNameByID(userID int) (string, error){
 	}
 
 	tmpUserName, err := lib.Get(getUserCacheKey(userID))
-	if err != nil  {
+	if err == nil  {
 		return tmpUserName, err
 	}
 
 	stmtOut, err := db.Prepare("select UserName from User WHERE UserID=?") // ? = placeholder
 	if err != nil {
-		panic(err.Error()) // proper error handling instead of panic in your app
+		panic(err.Error())
 	}
 	defer stmtOut.Close()
 

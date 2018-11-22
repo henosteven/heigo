@@ -8,7 +8,6 @@ build:
 	go build -o mweb ./*.go
 
 update:
-	glide cache-clear
 	glide update
 
 push:

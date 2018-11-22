@@ -4,6 +4,7 @@ import (
 	"net/http"
 	"github.com/henosteven/heigo/common"
 	"encoding/json"
+	"fmt"
 )
 
 const (
@@ -31,6 +32,9 @@ func SafeHandler(fn http.HandlerFunc) http.HandlerFunc {
 			}
 		}()
 		common.LogTrace(GetTraceInfoFromRequest(r), "com_request_in")
+		if !common.LimitAllow(r.URL.Path) {
+			panic("limit-qps")
+		}
 		fn(w, r)
 	}
 }

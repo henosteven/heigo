@@ -16,7 +16,7 @@ var LimitConfig map[string]*Limit
 
 func InitLimitConfig() {
 	LimitConfig = map[string]*Limit {
-		"user" : {0, 0, 10, 1},
+		"/user" : {0, 0, 2, 1},
 	}
 }
 

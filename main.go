@@ -40,6 +40,7 @@ func main() {
 
 	model.InitDb(config.GlobalConfig.MysqlConf)
 	common.InitLog(config.GlobalConfig.LogPath)
+	common.InitLimitConfig()
 
 	go signalProcess()
 	go initMartini()

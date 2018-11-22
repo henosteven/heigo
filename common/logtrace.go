@@ -3,6 +3,13 @@ package common
 import (
 	"log"
 	"os"
+	"fmt"
+)
+
+const (
+	PREFIX_INFO = "[INFO]"
+	PREFIX_WARNING = "[WARNING]"
+	PREFIX_ERROR = "[ERROR]"
 )
 
 func InitLog(logpath string) {
@@ -16,6 +23,19 @@ func InitLog(logpath string) {
 }
 
 func LogTrace(trace HeiTrace, msg string) {
-	log.SetPrefix("[INFO]")
-	log.Println(trace, msg)
+	logData(trace, PREFIX_INFO, msg)
+}
+
+func LogFatal(trace HeiTrace, msg string) {
+	logData(trace, PREFIX_ERROR, msg)
+}
+
+func LogWarning(trace HeiTrace, msg string) {
+	logData(trace, PREFIX_WARNING, msg)
+}
+
+func logData(trace HeiTrace, prefix string, msg string) {
+	log.SetPrefix(prefix)
+	logStr := fmt.Sprintf("%s|msg:%s", trace.GetTraceString(), msg)
+	log.Println(logStr)
 }

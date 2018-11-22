@@ -3,11 +3,16 @@ package common
 import (
 	"time"
 	"strconv"
+	"fmt"
 )
 
 type HeiTrace struct {
 	TraceID string
 	CTraceID string
+}
+
+func (this HeiTrace) GetTraceString() string {
+	return fmt.Sprintf("trace:%s|ctraceid:%s", this.TraceID, this.CTraceID)
 }
 
 func GenTrace() (trace HeiTrace){

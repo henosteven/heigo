@@ -8,6 +8,7 @@ import (
 	"github.com/henosteven/heigo/config"
 	"github.com/henosteven/heigo/thriftservice"
 	"github.com/henosteven/heigo/model"
+	"github.com/henosteven/heigo/common"
 	"fmt"
 	"runtime"
 	"os"
@@ -27,6 +28,7 @@ func main() {
 	config.InitConfig(configPath)
 
 	model.InitDb(config.GlobalConfig.MysqlConf)
+	common.InitLog(config.GlobalConfig.LogPath)
 
 	go signalProcess()
 	go initMartini()

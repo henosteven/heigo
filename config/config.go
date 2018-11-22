@@ -41,6 +41,7 @@ type Config struct {
 	ThriftConf ThriftConfig	`json:"thrift_conf",toml:"thriftconf`
 	RedisConf  RedisConfig	`json:"redis_conf",toml:"redisconf"`
 	MysqlConf  MysqlConfig	`json:"mysql_conf",toml:"mysqlconf"`
+	LogPath string `json:"log_path",toml:"logpath"`
 }
 
 var GlobalConfig Config

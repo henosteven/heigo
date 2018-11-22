@@ -67,7 +67,7 @@ func GetUserNameByID(userID int) (string, error){
 	}
 
 	tmpUserName, err := lib.Get(getUserCacheKey(userID))
-	if tmpUserName != "" {
+	if err != nil  {
 		return tmpUserName, err
 	}
 

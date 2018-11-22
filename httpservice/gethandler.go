@@ -35,5 +35,5 @@ func GetUser(w http.ResponseWriter, r *http.Request) {
 	}  else {
 		resp = userName
 	}
-	w.Write([]byte(resp))
+	ResponseSuccess(resp, w)
 }

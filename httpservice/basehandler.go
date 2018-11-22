@@ -3,7 +3,24 @@ package httpservice
 import (
 	"net/http"
 	"github.com/henosteven/heigo/common"
+	"encoding/json"
 )
+
+const (
+	SUCCESS = 0
+	ERROR_COMMON = 1
+)
+
+const (
+	SUCCESS_DESC = "success"
+	ERROR_COMMON_DESC = "something wrong happend"
+)
+
+type ResponseData struct {
+	Code int
+	Message string
+	Data interface{}
+}
 
 func SafeHandler(fn http.HandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
@@ -25,4 +42,14 @@ func GetTraceInfoFromRequest(r *http.Request) common.HeiTrace {
 	} else {
 		return common.GenTraceWithTraceID(traceID)
 	}
+}
+
+func ResponseSuccess(data interface{}, w http.ResponseWriter) {
+	responseData := ResponseData{
+		Code:SUCCESS,
+		Message:SUCCESS_DESC,
+		Data:data,
+	}
+	resp, _ := json.Marshal(responseData)
+	w.Write(resp)
 }

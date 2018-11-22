@@ -5,7 +5,10 @@ import (
 	"database/sql"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/henosteven/heigo/config"
+	"github.com/henosteven/heigo/lib"
 	"fmt"
+	"strconv"
+	"git.xiaojukeji.com/gulfstream/ofs/rpc/eta/base"
 )
 
 /*
@@ -64,6 +67,11 @@ func GetUserNameByID(userID int) (string, error){
 		return "", errors.New("invalid userid")
 	}
 
+	tmpUserName, err := lib.Get(getUserCacheKey(userID))
+	if tmpUserName != "" {
+		return tmpUserName, err
+	}
+
 	stmtOut, err := db.Prepare("select UserName from User WHERE UserID=?") // ? = placeholder
 	if err != nil {
 		panic(err.Error()) // proper error handling instead of panic in your app
@@ -81,5 +89,11 @@ func GetUserNameByID(userID int) (string, error){
 			panic(err.Error())
 		}
 	}
+
+	lib.Set(getUserCacheKey(userID), name)
 	return name, nil
+}
+
+func getUserCacheKey(userID int) string {
+	return "user_" + strconv.Itoa(userID)
 }

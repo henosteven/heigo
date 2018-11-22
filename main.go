@@ -18,6 +18,7 @@ import (
 	"log"
 	"net"
 	"flag"
+	"jinjing.space/web/lib"
 )
 
 var quit = make(chan int)
@@ -39,6 +40,7 @@ func main() {
 	config.InitConfig(*configPath)
 
 	model.InitDb(config.GlobalConfig.MysqlConf)
+	lib.InitRedis(config.GlobalConfig.RedisConf)
 	common.InitLog(config.GlobalConfig.LogPath)
 	common.InitLimitConfig()
 
@@ -97,6 +99,5 @@ func handleFlag() (needExit bool) {
 		fmt.Println("verison:", VERSION)
 		needExit = true
 	}
-
 	return
 }

@@ -17,15 +17,26 @@ import (
 	"time"
 	"log"
 	"net"
+	"flag"
 )
 
 var quit = make(chan int)
 
+const (
+	VERSION = "1.0.0"
+	DEFAULT_CONFIG_PATH = "./config/conf.toml"
+)
+
+var configPath *string
+
 func main() {
 	runtime.GOMAXPROCS(runtime.NumCPU())
 
-	configPath := "./config/conf.toml"
-	config.InitConfig(configPath)
+	if handleFlag() {
+		os.Exit(0)
+	}
+
+	config.InitConfig(*configPath)
 
 	model.InitDb(config.GlobalConfig.MysqlConf)
 	common.InitLog(config.GlobalConfig.LogPath)
@@ -71,4 +82,20 @@ func initThriftServe() {
 	server := thrift.NewTSimpleServer4(processor, serverTransport, transportFactory, protocolFactory)
 	fmt.Println("Running at:", net.JoinHostPort(config.GlobalConfig.Host, config.GlobalConfig.ThriftConf.Port))
 	server.Serve()
+}
+
+func handleFlag() (needExit bool) {
+	needExit = false
+	showVersion := flag.Bool("version", false, "version")
+	showV := flag.Bool("v", false, "version")
+
+	configPath = flag.String("config", DEFAULT_CONFIG_PATH, "version")
+
+	flag.Parse()
+	if *showVersion || *showV {
+		fmt.Println("verison:", VERSION)
+		needExit = true
+	}
+
+	return
 }

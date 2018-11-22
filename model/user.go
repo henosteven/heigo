@@ -8,6 +8,7 @@ import (
 	"github.com/henosteven/heigo/lib"
 	"fmt"
 	"strconv"
+	"jinjing.space/web/common"
 )
 
 /*
@@ -73,19 +74,19 @@ func GetUserNameByID(userID int) (string, error){
 
 	stmtOut, err := db.Prepare("select UserName from User WHERE UserID=?") // ? = placeholder
 	if err != nil {
-		panic(err.Error())
+		panic(err.Error() + "GetUserNameByID:Prepare:failed")
 	}
 	defer stmtOut.Close()
 
 	rows, err := stmtOut.Query(userID)
 	if err != nil {
-		panic(err.Error())
+		panic(err.Error() + "GetUserNameByID:query:failed")
 	}
 
 	var name string
 	for rows.Next() {
 		if err := rows.Scan(&name); err != nil {
-			panic(err.Error())
+			panic(err.Error() + "GetUserNameByID:scan:failed")
 		}
 	}
 

@@ -3,7 +3,6 @@ package httpservice
 import (
 	"github.com/henosteven/heigo/model"
 	"net/http"
-	"strconv"
 )
 
 func SetUser(w http.ResponseWriter, r *http.Request) {

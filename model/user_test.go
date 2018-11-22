@@ -3,10 +3,30 @@ package model
 import (
 	"testing"
 	"os"
+	"github.com/henosteven/heigo/config"
+	"github.com/henosteven/heigo/lib"
 )
 
 func TestMain(m *testing.M) {
-	InitDb()
+	var mysqlConfig = config.MysqlConfig{
+		"127.0.0.1",
+		"3306",
+		"root",
+		"",
+		"test",
+		"tcp",
+	}
+	InitDb(mysqlConfig)
+
+	var redisConfig = config.RedisConfig{
+		3,
+		100,
+		"127.0.0.1",
+		"6379",
+		"",
+		"",
+	}
+	lib.InitRedis(redisConfig)
 	retCode := m.Run()
 	TeardownDb()
 	os.Exit(retCode)
@@ -26,8 +46,8 @@ func TestAddUser(t *testing.T) {
 			t.Errorf("addUser failed, error: %s, name: %s", val.userName, err.Error())
 		}
 
-		if result > 0 {
-			t.Errorf("addUser failed, name: %s, expect: %s  get: %s", val.userName, val.expectResult, result)
+		if result <= 0 {
+			t.Errorf("addUser failed, name: %s, expect: %v  get: %v", val.userName, val.expectResult, result)
 		}
 	}
 }

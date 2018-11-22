@@ -16,6 +16,6 @@ func InitLog(logpath string) {
 }
 
 func LogTrace(trace HeiTrace, msg string) {
-	log.SetPrefix("INFO")
-	log.Println(msg)
+	log.SetPrefix("[INFO]")
+	log.Println(trace, msg)
 }

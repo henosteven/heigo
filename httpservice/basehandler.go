@@ -4,7 +4,6 @@ import (
 	"net/http"
 	"github.com/henosteven/heigo/common"
 	"encoding/json"
-	"fmt"
 )
 
 const (

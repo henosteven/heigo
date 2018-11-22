@@ -44,10 +44,20 @@ func GetTraceInfoFromRequest(r *http.Request) common.HeiTrace {
 	}
 }
 
-func ResponseSuccess(data interface{}, w http.ResponseWriter) {
+func ResponseSuccess(w http.ResponseWriter, data interface{}) {
 	responseData := ResponseData{
 		Code:SUCCESS,
 		Message:SUCCESS_DESC,
+		Data:data,
+	}
+	resp, _ := json.Marshal(responseData)
+	w.Write(resp)
+}
+
+func ResponseFailed(w http.ResponseWriter, message string, data interface{}) {
+	responseData := ResponseData{
+		Code:ERROR_COMMON,
+		Message:message,
 		Data:data,
 	}
 	resp, _ := json.Marshal(responseData)

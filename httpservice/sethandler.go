@@ -13,5 +13,5 @@ func SetUser(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte(err.Error()))
 		return
 	}
-	w.Write([]byte("success" + strconv.Itoa(userID)))
+	ResponseSuccess(w, userID)
 }

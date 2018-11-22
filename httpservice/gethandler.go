@@ -17,15 +17,13 @@ func GetUser(w http.ResponseWriter, r *http.Request) {
 	params := r.URL.Query()
 	userID := params.Get("userId")
 	if userID == "" {
-		resp = USERID_EMPTY
-		w.Write([]byte(resp))
+		ResponseFailed(w, USERID_EMPTY, struct{}{})
 		return
 	}
 
 	id, err := strconv.Atoi(userID)
 	if err !=nil {
-		resp = USERID_NOT_DIGIT
-		w.Write([]byte(resp))
+		ResponseFailed(w, USERID_NOT_DIGIT, struct{}{})
 		return
 	}
 
@@ -35,5 +33,5 @@ func GetUser(w http.ResponseWriter, r *http.Request) {
 	}  else {
 		resp = userName
 	}
-	ResponseSuccess(resp, w)
+	ResponseSuccess(w, resp)
 }

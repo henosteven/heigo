@@ -4,6 +4,7 @@ import (
 	"net/http"
 	"github.com/henosteven/heigo/common"
 	"encoding/json"
+	"fmt"
 )
 
 const (
@@ -28,6 +29,7 @@ func SafeHandler(fn http.HandlerFunc) http.HandlerFunc {
 			if err := recover(); err != nil {
 				w.WriteHeader(http.StatusOK)
 				w.Write([]byte("{\"errno\": 500}"))
+				common.LogFatal(GetTraceInfoFromRequest(r), fmt.Sprintf("%v", err))
 			}
 		}()
 		common.LogTrace(GetTraceInfoFromRequest(r), "com_request_in")

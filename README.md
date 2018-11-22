@@ -8,6 +8,10 @@
 ## thrift文件生成
 thrift --out ../  --gen go hei.thrift
 
+## 编译方式
+* make 生成编译文件
+* make update 更新依赖包
+
 
 ```
 package main

@@ -1,8 +1,8 @@
 mweb:
 	git push origin master
 	glide cache-clear
-    glide update
-    go build -o mweb ./*.go
+	glide update
+	go build -o mweb ./*.go
 
 build:
 	go build -o mweb ./*.go

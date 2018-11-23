@@ -24,7 +24,6 @@ import (
 var quit = make(chan int)
 
 const (
-	VERSION = "1.0.0"
 	DEFAULT_CONFIG_PATH = "./config/conf.toml"
 )
 
@@ -96,7 +95,7 @@ func handleFlag() (needExit bool) {
 
 	flag.Parse()
 	if *showVersion || *showV {
-		fmt.Println("verison:", VERSION)
+		fmt.Println("verison:", config.GlobalConfig.Version)
 		needExit = true
 	}
 	return

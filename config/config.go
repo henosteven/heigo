@@ -41,6 +41,7 @@ type LogPath struct {
 }
 
 type Config struct {
+	Version string `json:"version",toml:"version"`
 	Host string `json:"host",toml:"host"`
 	WebConf WebConfig	`json:"web_conf",toml:"webconf"`
 	ThriftConf ThriftConfig	`json:"thrift_conf",toml:"thriftconf`

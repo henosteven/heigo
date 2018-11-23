@@ -1,4 +1,5 @@
 mweb:
+	mkdir ./log
 	git push origin master
 	glide cache-clear
 	glide update
@@ -15,4 +16,5 @@ push:
 
 clean:
 	rm mweb
+	rm -rf log
 	glide cache-clear

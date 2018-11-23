@@ -22,6 +22,7 @@ func InitLog(logpath config.LogPath) {
 	if err != nil {
 		log.Fatalf("error opening file: %v", err)
 	}
+	OutputMap = make(map[string]*os.File)
 	OutputMap[PREFIX_INFO] = ftrace
 
 	ferror, err := os.OpenFile(logpath.ErrorPath, os.O_RDWR | os.O_CREATE | os.O_APPEND, 0666)

@@ -35,13 +35,18 @@ type MysqlConfig struct {
 	Protocol string	`json:"protocol",toml:"protocol"`
 }
 
+type LogPath struct {
+	TracePath string `json:"trace_path",toml:"tracepath"`
+	ErrorPath string `json:"error_path",toml:"errorpath"`
+}
+
 type Config struct {
 	Host string `json:"host",toml:"host"`
 	WebConf WebConfig	`json:"web_conf",toml:"webconf"`
 	ThriftConf ThriftConfig	`json:"thrift_conf",toml:"thriftconf`
 	RedisConf  RedisConfig	`json:"redis_conf",toml:"redisconf"`
 	MysqlConf  MysqlConfig	`json:"mysql_conf",toml:"mysqlconf"`
-	LogPath string `json:"log_path",toml:"logpath"`
+	LogPath LogPath `json:"log_path",toml:"logpath"`
 }
 
 var GlobalConfig Config

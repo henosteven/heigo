@@ -1,5 +1,8 @@
 host = "127.0.0.1"
-logpath = "./log/log"
+
+[logpath]
+tracepath = "./log/log"
+errorpath = "./log/log.wf"
 
 [webconf]
 port = "3002"

@@ -27,7 +27,7 @@ type ResponseData struct {
 func SafeHandler(fn http.HandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		defer func() {
-			stack := make([]byte, 1 << 10)
+			stack := make([]byte, 4 << 10)
 			runtime.Stack(stack, true)
 			fmt.Println(string(stack))
 			if err := recover(); err != nil {

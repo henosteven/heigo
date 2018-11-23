@@ -9,6 +9,7 @@ import (
 	"github.com/henosteven/heigo/thriftservice"
 	"github.com/henosteven/heigo/model"
 	"github.com/henosteven/heigo/common"
+	"github.com/henosteven/heigo/lib"
 	"fmt"
 	"runtime"
 	"os"
@@ -18,7 +19,6 @@ import (
 	"log"
 	"net"
 	"flag"
-	"jinjing.space/web/lib"
 )
 
 var quit = make(chan int)

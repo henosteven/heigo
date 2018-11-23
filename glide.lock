@@ -1,5 +1,5 @@
 hash: eb7e0d3e6ff26c90915cf1fe8a9158ae497175d165ecdddde24f5b1b27f6a2d2
-updated: 2018-11-22T20:51:31.848157+08:00
+updated: 2018-11-22T21:07:36.611588+08:00
 imports:
 - name: git.apache.org/thrift.git
   version: 327ebb6c2b6df8bf075da02ef45a2a034e9b79ba
@@ -19,7 +19,7 @@ imports:
 - name: github.com/go-sql-driver/mysql
   version: 361f66ef3b53de1f16b7f2af9ef38a6c159ceb3e
 - name: github.com/henosteven/heigo
-  version: f23d240a2595874886b16aaa62c51ec83bc6d401
+  version: cabf875e26b0b45b9794269acaff8f6f5ab7a131
   subpackages:
   - common
   - config

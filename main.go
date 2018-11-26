@@ -32,7 +32,8 @@ var configPath *string
 func main() {
 	runtime.GOMAXPROCS(runtime.NumCPU())
 
-	if handleFlag() {
+	exit := handleFlag()
+	if exit {
 		os.Exit(0)
 	}
 

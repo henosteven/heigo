@@ -1,22 +1,22 @@
 package common
 
 import (
-	"time"
 	"fmt"
+	"time"
 )
 
 type Limit struct {
-	CurrentCount int
-	CurrentTime int64
-	LimitCount int
+	CurrentCount  int
+	CurrentTime   int64
+	LimitCount    int
 	LimitInterval int64
 }
 
 var LimitConfig map[string]*Limit
 
 func InitLimitConfig() {
-	LimitConfig = map[string]*Limit {
-		"/user" : {0, 0, 2, 1},
+	LimitConfig = map[string]*Limit{
+		"/user": {0, 0, 2, 1},
 	}
 }
 

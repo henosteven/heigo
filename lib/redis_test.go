@@ -1,17 +1,17 @@
 package lib
 
 import (
-	"time"
-	"testing"
 	"github.com/henosteven/heigo/config"
 	"os"
+	"testing"
+	"time"
 )
 
 var conf = config.RedisConfig{
-	MaxIdle: 3,
+	MaxIdle:     3,
 	IdleTimeout: time.Second * 1,
-	Host: "127.0.0.1",
-	Port: "6379",
+	Host:        "127.0.0.1",
+	Port:        "6379",
 }
 
 func TestMain(m *testing.M) {
@@ -21,11 +21,11 @@ func TestMain(m *testing.M) {
 }
 
 func TestSet(t *testing.T) {
-	var demo = map[string]string {
+	var demo = map[string]string{
 		"name": "test",
 	}
 
-	for key, val := range(demo) {
+	for key, val := range demo {
 		err := Set(key, val)
 		if err != nil {
 			t.Error("case failed: set", err)
@@ -35,9 +35,9 @@ func TestSet(t *testing.T) {
 
 func TestGet(t *testing.T) {
 	var demo = []struct {
-		key string
+		key    string
 		expect string
-	} {
+	}{
 		{"name", "test"},
 		{"name1", ""},
 	}

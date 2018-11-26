@@ -1,16 +1,16 @@
 package main
 
 import (
-	"git.apache.org/thrift.git/lib/go/thrift"
-	"github.com/henosteven/heigo/heiThrift"
-	"github.com/henosteven/heigo/config"
-	"net"
-	"fmt"
-	"log"
 	"context"
+	"fmt"
+	"git.apache.org/thrift.git/lib/go/thrift"
+	"github.com/henosteven/heigo/config"
+	"github.com/henosteven/heigo/heiThrift"
+	"log"
+	"net"
 )
 
-func main()  {
+func main() {
 	tSocket, err := thrift.NewTSocket(net.JoinHostPort(config.HOST, config.THRIFT_PORT))
 	if err != nil {
 		log.Fatalln("tSocket error:", err)
@@ -26,9 +26,8 @@ func main()  {
 	}
 	defer transport.Close()
 
-
 	ctx := context.Background()
-	data := heiThrift.Data{Text:"hello,world!"}
+	data := heiThrift.Data{Text: "hello,world!"}
 	d, err := client.DoFormat(ctx, &data)
 	fmt.Println(d.Text)
 }

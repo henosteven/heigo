@@ -2,21 +2,21 @@ package lib
 
 import (
 	"context"
-	"net/url"
 	"io/ioutil"
-	"strings"
 	"net/http"
+	"net/url"
+	"strings"
 )
 
-func HttpGet(ctx context.Context, path string, params map[string]interface{}, headers map[string]interface{}) (string, error){
+func HttpGet(ctx context.Context, path string, params map[string]interface{}, headers map[string]interface{}) (string, error) {
 	return request(ctx, path, params, headers, "get")
 }
 
-func HttpPost(ctx context.Context, path string, params map[string]interface{}, headers map[string]interface{}) (string, error){
+func HttpPost(ctx context.Context, path string, params map[string]interface{}, headers map[string]interface{}) (string, error) {
 	return request(ctx, path, params, headers, "get")
 }
 
-func request(ctx context.Context, path string, params map[string]interface{}, headers map[string]interface{}, method string) (string, error){
+func request(ctx context.Context, path string, params map[string]interface{}, headers map[string]interface{}, method string) (string, error) {
 	formData := url.Values{}
 	for key, val := range params {
 		formData.Set(key, val.(string))

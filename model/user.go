@@ -1,12 +1,12 @@
 package model
 
 import (
-	"errors"
 	"database/sql"
+	"errors"
+	"fmt"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/henosteven/heigo/config"
 	"github.com/henosteven/heigo/lib"
-	"fmt"
 	"strconv"
 )
 
@@ -33,7 +33,7 @@ func TeardownDb() {
 	db.Close()
 }
 
-func AddUser(userName string) (int, error){
+func AddUser(userName string) (int, error) {
 	if len(userName) == 0 {
 		return 0, errors.New("user name empty")
 	}
@@ -61,13 +61,13 @@ func AddUser(userName string) (int, error){
 	return int(userID), nil
 }
 
-func GetUserNameByID(userID int) (string, error){
+func GetUserNameByID(userID int) (string, error) {
 	if userID <= 0 {
 		return "", errors.New("invalid userid")
 	}
 
 	tmpUserName, err := lib.Get(getUserCacheKey(userID))
-	if err == nil  {
+	if err == nil {
 		return tmpUserName, err
 	}
 

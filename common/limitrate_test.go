@@ -10,10 +10,10 @@ func TestMain(m *testing.M) {
 }
 
 func TestLimitAllow(t *testing.T) {
-	caseList := []struct{
-		Api string
+	caseList := []struct {
+		Api   string
 		Allow bool
-	} {
+	}{
 		{"user", true},
 	}
 

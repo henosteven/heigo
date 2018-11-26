@@ -1,26 +1,26 @@
 package httpservice
 
 import (
-	"net/http"
-	"github.com/henosteven/heigo/common"
 	"encoding/json"
+	"github.com/henosteven/heigo/common"
+	"net/http"
 	"runtime"
 )
 
 const (
-	SUCCESS = 0
+	SUCCESS      = 0
 	ERROR_COMMON = 1
 )
 
 const (
-	SUCCESS_DESC = "success"
+	SUCCESS_DESC      = "success"
 	ERROR_COMMON_DESC = "something wrong happend"
 )
 
 type ResponseData struct {
-	Code int
+	Code    int
 	Message string
-	Data interface{}
+	Data    interface{}
 }
 
 func SafeHandler(fn http.HandlerFunc) http.HandlerFunc {
@@ -29,7 +29,7 @@ func SafeHandler(fn http.HandlerFunc) http.HandlerFunc {
 			if err := recover(); err != nil {
 				w.WriteHeader(http.StatusOK)
 				w.Write([]byte("{\"errno\": 500}"))
-				stack := make([]byte, 4 << 10)
+				stack := make([]byte, 4<<10)
 				runtime.Stack(stack, true)
 				common.LogFatal(GetTraceInfoFromRequest(r), string(stack))
 			}
@@ -53,9 +53,9 @@ func GetTraceInfoFromRequest(r *http.Request) common.HeiTrace {
 
 func ResponseSuccess(w http.ResponseWriter, data interface{}) {
 	responseData := ResponseData{
-		Code:SUCCESS,
-		Message:SUCCESS_DESC,
-		Data:data,
+		Code:    SUCCESS,
+		Message: SUCCESS_DESC,
+		Data:    data,
 	}
 	resp, _ := json.Marshal(responseData)
 	w.Write(resp)
@@ -63,9 +63,9 @@ func ResponseSuccess(w http.ResponseWriter, data interface{}) {
 
 func ResponseFailed(w http.ResponseWriter, message string, data interface{}) {
 	responseData := ResponseData{
-		Code:ERROR_COMMON,
-		Message:message,
-		Data:data,
+		Code:    ERROR_COMMON,
+		Message: message,
+		Data:    data,
 	}
 	resp, _ := json.Marshal(responseData)
 	w.Write(resp)

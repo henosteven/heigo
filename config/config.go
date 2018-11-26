@@ -1,21 +1,21 @@
 package config
 
 import (
-	"time"
-	"github.com/BurntSushi/toml"
-	"fmt"
 	"encoding/json"
+	"fmt"
+	"github.com/BurntSushi/toml"
+	"time"
 )
 
 const HOST = "127.0.0.1"
 
 type RedisConfig struct {
-	MaxIdle int	`json:"maxidle",toml:"maxidle"`
-	IdleTimeout time.Duration	`json:"idle_timeout",toml:"idle_timeout"`
-	Host string	`json:"host",toml:"host"`
-	Port string	`json:"port",toml:"port"`
-	User string	`json:"user",toml:"user"`
-	Password string	`json:"password",toml:"password"`
+	MaxIdle     int           `json:"maxidle",toml:"maxidle"`
+	IdleTimeout time.Duration `json:"idle_timeout",toml:"idle_timeout"`
+	Host        string        `json:"host",toml:"host"`
+	Port        string        `json:"port",toml:"port"`
+	User        string        `json:"user",toml:"user"`
+	Password    string        `json:"password",toml:"password"`
 }
 
 type WebConfig struct {
@@ -23,16 +23,16 @@ type WebConfig struct {
 }
 
 type ThriftConfig struct {
-	Port string	`json:"port",toml:"port"`
+	Port string `json:"port",toml:"port"`
 }
 
 type MysqlConfig struct {
-	Host string	`json:"host",toml:"host"`
-	Port string	`json:"port",toml:"port"`
-	User string	`json:"user",toml:"user"`
-	Password string	`json:"password",toml:"password"`
-	Database string	`json:"database",toml:"database"`
-	Protocol string	`json:"protocol",toml:"protocol"`
+	Host     string `json:"host",toml:"host"`
+	Port     string `json:"port",toml:"port"`
+	User     string `json:"user",toml:"user"`
+	Password string `json:"password",toml:"password"`
+	Database string `json:"database",toml:"database"`
+	Protocol string `json:"protocol",toml:"protocol"`
 }
 
 type LogPath struct {
@@ -41,13 +41,13 @@ type LogPath struct {
 }
 
 type Config struct {
-	Version string `json:"version",toml:"version"`
-	Host string `json:"host",toml:"host"`
-	WebConf WebConfig	`json:"web_conf",toml:"webconf"`
-	ThriftConf ThriftConfig	`json:"thrift_conf",toml:"thriftconf`
-	RedisConf  RedisConfig	`json:"redis_conf",toml:"redisconf"`
-	MysqlConf  MysqlConfig	`json:"mysql_conf",toml:"mysqlconf"`
-	LogPath LogPath `json:"log_path",toml:"logpath"`
+	Version    string       `json:"version",toml:"version"`
+	Host       string       `json:"host",toml:"host"`
+	WebConf    WebConfig    `json:"web_conf",toml:"webconf"`
+	ThriftConf ThriftConfig `json:"thrift_conf",toml:"thriftconf`
+	RedisConf  RedisConfig  `json:"redis_conf",toml:"redisconf"`
+	MysqlConf  MysqlConfig  `json:"mysql_conf",toml:"mysqlconf"`
+	LogPath    LogPath      `json:"log_path",toml:"logpath"`
 }
 
 var GlobalConfig Config

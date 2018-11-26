@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	USERID_EMPTY = "user id empty"
+	USERID_EMPTY     = "user id empty"
 	USERID_NOT_DIGIT = "user id not digit"
 )
 
@@ -22,7 +22,7 @@ func GetUser(w http.ResponseWriter, r *http.Request) {
 	}
 
 	id, err := strconv.Atoi(userID)
-	if err !=nil {
+	if err != nil {
 		ResponseFailed(w, USERID_NOT_DIGIT, struct{}{})
 		return
 	}
@@ -30,7 +30,7 @@ func GetUser(w http.ResponseWriter, r *http.Request) {
 	userName, err := model.GetUserNameByID(id)
 	if err != nil {
 		resp = err.Error()
-	}  else {
+	} else {
 		resp = userName
 	}
 	ResponseSuccess(w, resp)

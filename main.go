@@ -3,22 +3,22 @@ package main
 import (
 	"git.apache.org/thrift.git/lib/go/thrift"
 	"github.com/codegangsta/martini"
-	"github.com/henosteven/heigo/httpservice"
-	"github.com/henosteven/heigo/heiThrift"
-	"github.com/henosteven/heigo/config"
-	"github.com/henosteven/heigo/thriftservice"
-	"github.com/henosteven/heigo/model"
 	"github.com/henosteven/heigo/common"
+	"github.com/henosteven/heigo/config"
+	"github.com/henosteven/heigo/heiThrift"
+	"github.com/henosteven/heigo/httpservice"
 	"github.com/henosteven/heigo/lib"
+	"github.com/henosteven/heigo/model"
+	"github.com/henosteven/heigo/thriftservice"
+	"flag"
 	"fmt"
-	"runtime"
-	"os"
-	"os/signal"
-	"syscall"
-	"time"
 	"log"
 	"net"
-	"flag"
+	"os"
+	"os/signal"
+	"runtime"
+	"syscall"
+	"time"
 )
 
 var quit = make(chan int)
@@ -46,7 +46,7 @@ func main() {
 	go signalProcess()
 	go initMartini()
 	go initThriftServe()
-	<- quit
+	<-quit
 	model.TeardownDb()
 	fmt.Println("ctrl -c ~ bye~bye~")
 	time.Sleep(time.Second * 1)

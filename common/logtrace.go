@@ -1,31 +1,31 @@
 package common
 
 import (
+	"fmt"
 	"github.com/henosteven/heigo/config"
 	"log"
 	"os"
-	"fmt"
 )
 
 const (
-	PREFIX_INFO = "[INFO]"
+	PREFIX_INFO    = "[INFO]"
 	PREFIX_WARNING = "[WARNING]"
-	PREFIX_ERROR = "[ERROR]"
+	PREFIX_ERROR   = "[ERROR]"
 )
 
 var OutputMap map[string]*os.File
 
 func InitLog(logpath config.LogPath) {
-	log.SetFlags(log.LstdFlags|log.Lshortfile)
+	log.SetFlags(log.LstdFlags | log.Lshortfile)
 
-	ftrace, err := os.OpenFile(logpath.TracePath, os.O_RDWR | os.O_CREATE | os.O_APPEND, 0666)
+	ftrace, err := os.OpenFile(logpath.TracePath, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
 	if err != nil {
 		log.Fatalf("error opening file: %v", err)
 	}
 	OutputMap = make(map[string]*os.File)
 	OutputMap[PREFIX_INFO] = ftrace
 
-	ferror, err := os.OpenFile(logpath.ErrorPath, os.O_RDWR | os.O_CREATE | os.O_APPEND, 0666)
+	ferror, err := os.OpenFile(logpath.ErrorPath, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
 	if err != nil {
 		log.Fatalf("error opening file: %v", err)
 	}

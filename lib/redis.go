@@ -1,21 +1,21 @@
 package lib
 
 import (
+	"fmt"
 	"github.com/garyburd/redigo/redis"
 	"github.com/henosteven/heigo/config"
 	"net"
 	"time"
-	"fmt"
 )
 
 var pool *redis.Pool
 
-func InitRedis (config config.RedisConfig) {
+func InitRedis(config config.RedisConfig) {
 	pool = &redis.Pool{
-		MaxIdle:config.MaxIdle,
-		IdleTimeout:config.IdleTimeout,
-		Dial: func() (redis.Conn, error){
-			c , err := redis.Dial("tcp", net.JoinHostPort(config.Host, config.Port))
+		MaxIdle:     config.MaxIdle,
+		IdleTimeout: config.IdleTimeout,
+		Dial: func() (redis.Conn, error) {
+			c, err := redis.Dial("tcp", net.JoinHostPort(config.Host, config.Port))
 			return c, err
 		},
 		TestOnBorrow: func(c redis.Conn, t time.Time) error {

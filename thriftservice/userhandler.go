@@ -1,17 +1,16 @@
 package thriftservice
 
 import (
+	"context"
 	"github.com/henosteven/heigo/heiThrift"
 	"github.com/henosteven/heigo/model"
-	"context"
 )
 
 type UserHandlerImpl struct {
-
 }
 
 func (userhandler UserHandlerImpl) GetUser(ctx context.Context, userId int64) (r *heiThrift.User, err error) {
-	user := &heiThrift.User {}
+	user := &heiThrift.User{}
 
 	userName, err := model.GetUserNameByID(int(userId))
 	if err != nil {

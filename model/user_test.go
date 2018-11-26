@@ -1,10 +1,10 @@
 package model
 
 import (
-	"testing"
-	"os"
 	"github.com/henosteven/heigo/config"
 	"github.com/henosteven/heigo/lib"
+	"os"
+	"testing"
 )
 
 func TestMain(m *testing.M) {
@@ -34,9 +34,9 @@ func TestMain(m *testing.M) {
 
 func TestAddUser(t *testing.T) {
 	caseList := []struct {
-		userName string
+		userName     string
 		expectResult bool
-	} {
+	}{
 		{"heno", true},
 		{"jinjing", true},
 	}
@@ -54,9 +54,9 @@ func TestAddUser(t *testing.T) {
 
 func TestGetUserNameByID(t *testing.T) {
 	caseList := []struct {
-		userID int
+		userID     int
 		expectName string
-	} {
+	}{
 		{1, "heno"},
 	}
 	for _, val := range caseList {

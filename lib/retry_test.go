@@ -10,13 +10,11 @@ import (
 
 func TestTryDo(t *testing.T) {
 
-	a := 1
-	b := 2
+	a, b := 1, 2
 	c := "hello"
 	TryDo(1, func() error {
-		customFunc(a, b, c)
-		return nil
-	})
+		return customFunc(a, b, c)
+	}, time.Millisecond)
 
 	caseList := []struct{
 		attemptCount int

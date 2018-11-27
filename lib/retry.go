@@ -2,7 +2,7 @@ package lib
 
 import (
 	"errors"
-	"fmt"
+	"time"
 )
 
 const (
@@ -12,17 +12,27 @@ const (
 )
 type Func func() error
 
-func TryDo(attempt int, fn Func) (err error) {
+type RetryStopErr struct {
+	error
+}
+
+func TryDo(attempt int, fn Func, sleep time.Duration) (err error) {
 	if attempt > MaxRetryCount || attempt < MinRetryCount {
 		return errors.New(OutMaxRetCountError)
 	}
 
 	for i := 0; i <= attempt; i++ {
-		fmt.Printf("try:%v", i)
+
 		err = fn()
 		if err == nil {
 			break
 		}
+
+		if _, ok := err.(RetryStopErr); ok {
+			break
+		}
+
+		time.Sleep(sleep)
 	}
 
 	return err

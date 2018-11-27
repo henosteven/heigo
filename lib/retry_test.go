@@ -38,7 +38,7 @@ func TestTryDo(t *testing.T) {
 	for _, val := range caseList {
 		res := TryDo(val.attemptCount, func() error {
 			return val.fn()
-		})
+		}, time.Millisecond)
 
 		if res.Error() != val.err.Error() {
 			t.Errorf("expect:%v, get:%v", val.err, res)

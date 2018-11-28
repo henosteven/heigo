@@ -42,6 +42,7 @@ func Set(key, val string) error {
 func Get(key string) (string, error) {
 	conn := pool.Get()
 	defer conn.Close()
-	val, err := redis.String(conn.Do("Get", key))
+	reply, err := conn.Do("Get", key)
+	val, err := redis.String(reply, err)
 	return val, err
 }

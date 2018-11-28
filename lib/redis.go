@@ -29,11 +29,15 @@ func InitRedis(config config.RedisConfig) {
 }
 
 func Set(key, val string) error {
-	_, err := pool.Get().Do("Set", key, val)
+	conn := pool.Get()
+	defer conn.Close()
+	_, err := conn.Do("Set", key, val)
 	return err
 }
 
 func Get(key string) (string, error) {
-	val, err := redis.String(pool.Get().Do("Get", key))
+	conn := pool.Get()
+	defer conn.Close()
+	val, err := redis.String(conn.Do("Get", key))
 	return val, err
 }

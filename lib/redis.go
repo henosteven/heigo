@@ -19,6 +19,10 @@ func InitRedis(config config.RedisConfig) {
 			return c, err
 		},
 		TestOnBorrow: func(c redis.Conn, t time.Time) error {
+
+			if time.Since(t) < time.Minute {
+				return nil
+			}
 			_, err := c.Do("ping")
 			if err != nil {
 				return fmt.Errorf("")
